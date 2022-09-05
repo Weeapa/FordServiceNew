@@ -1,8 +1,16 @@
 from django.db import models
 
-class Worker(models.Model):
-    name = models.CharField(max_length=64)
-    lastname = models.CharField(max_length=64)
-    position = models.CharField(max_length=64)
-    phone = models.CharField(max_length=20)
-    photo = models.ImageField(upload_to='photos/%Y/%m/%d')
+
+class Workers(models.Model):
+    name = models.CharField(max_length=64, verbose_name='Имя')
+    lastname = models.CharField(max_length=64, verbose_name='Фамилия')
+    position = models.CharField(max_length=64, verbose_name='Должность')
+    phone = models.CharField(max_length=20, verbose_name='Телефон')
+    photo = models.ImageField(upload_to='photos/%Y/%m/%d', verbose_name='')
+
+    def __str__(self):
+        return self.name
+
+    class Meta():
+        verbose_name = "Работник"
+        verbose_name_plural = "Работники"

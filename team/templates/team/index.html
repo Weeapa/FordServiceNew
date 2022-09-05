@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список сотрудников</title>
+</head>
+<body>
+{% for item in workers %}
+    <div>
+        <p> {{ item.name }} {{ item.lastname }}</p>
+        <p> {{ item.phone }}</p>
+        <p> {{  item.position }}</p>
+    </div>
+    <hr>
+{% endfor %}
+
+
+
+</body>
+</html>
