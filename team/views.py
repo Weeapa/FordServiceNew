@@ -8,4 +8,6 @@ def team(request):
     workers = Workers.objects.all()
     return render(request, 'team/index.html', {'workers': workers} )
 
+
+
 # Create your views here.
