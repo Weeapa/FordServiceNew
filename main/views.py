@@ -4,7 +4,7 @@ from django.http import HttpResponse
 
 def index(request):
     print(request)
-    return HttpResponse("Work")
+    return HttpResponse("<h1>Welcome to FordService<h1>")
 
 
 
