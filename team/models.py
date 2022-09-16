@@ -10,6 +10,7 @@ class Workers(models.Model):
     photo = models.ImageField(upload_to='photos/%Y/%m/%d', verbose_name='Фото', blank=True)
 
 
+
     def __str__(self):
         return self.name
 
