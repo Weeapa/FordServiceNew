@@ -3,7 +3,7 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
-    <h1> Login</h1>
+    <h1>Логин</h1>
     
     {% if form.errors %}
         <p> {{ form.errors.erros }}</p>
@@ -12,9 +12,9 @@
     <form action="{% url 'login' %}" method="post">
     {{ form }}
     {% csrf_token %}
-    <button type="submit" class="btn btn-success">submit</button>
+    <button type="submit" class="btn btn-success">Отправить</button>
     </form>
 
-    <a href="{% url 'password_reset' %}">Forgot password?</a>
+    <a href="{% url 'password_reset' %}">Забыли пароль?</a>
     <hr>
 {% endblock %}
