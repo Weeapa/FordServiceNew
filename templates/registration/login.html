@@ -3,7 +3,7 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
-    <h1>Логин</h1>
+    <h1>Логин </h1>
     
     {% if form.errors %}
         <p> {{ form.errors.erros }}</p>
@@ -16,5 +16,6 @@
     </form>
 
     <a href="{% url 'password_reset' %}">Забыли пароль?</a>
+    <a href="{% url 'register' %}">Зарегестрироваться</a>
     <hr>
 {% endblock %}
