@@ -1,10 +1,11 @@
 from django.contrib.auth import authenticate, login, get_user_model
 from django.contrib.auth.views import LoginView
 from django.core.exceptions import ValidationError
-from django.shortcuts import render, redirect
 from django.utils.http import urlsafe_base64_decode
 from django.views import View
-from django.contrib.auth.tokens import default_token_generator as token_generator
+from django.shortcuts import render, redirect
+from django.contrib.auth.tokens import default_token_generator as \
+    token_generator
 from users.forms import UserCreationForm, AuthenticationForm
 from users.utils import send_email_for_verify
 
@@ -12,18 +13,20 @@ User = get_user_model()
 
 
 class MyLoginView(LoginView):
-    pass
+    form_class = AuthenticationForm
 
 
 class EmailVerify(View):
+
     def get(self, request, uidb64, token):
         user = self.get_user(uidb64)
+
         if user is not None and token_generator.check_token(user, token):
             user.email_verify = True
             user.save()
             login(request, user)
-            return redirect("home")
-        return redirect("invalid_verify")
+            return redirect('home')
+        return redirect('invalid_verify')
 
     @staticmethod
     def get_user(uidb64):
@@ -31,13 +34,8 @@ class EmailVerify(View):
             # urlsafe_base64_decode() decodes to bytestring
             uid = urlsafe_base64_decode(uidb64).decode()
             user = User.objects.get(pk=uid)
-        except (
-                TypeError,
-                ValueError,
-                OverflowError,
-                User.DoesNotExist,
-                ValidationError,
-        ):
+        except (TypeError, ValueError, OverflowError,
+                User.DoesNotExist, ValidationError):
             user = None
         return user
 
