@@ -1,7 +1,7 @@
 from django.urls import path, include
 from django.views.generic import TemplateView
 
-from users.views import Register, EmailVerify, MyLoginView
+from users.views import Register, EmailVerify, MyLoginView, LoginAjaxView
 
 urlpatterns = [
 
@@ -24,5 +24,7 @@ urlpatterns = [
          ),
 
     path('register/', Register.as_view(), name='register'),
+
+    path('login_ajax/', LoginAjaxView.as_view(), name='login_ajax')
 ]
 
