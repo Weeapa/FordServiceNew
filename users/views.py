@@ -12,8 +12,9 @@ from users.utils import send_email_for_verify
 User = get_user_model()
 
 
-class LoginAjaxView():
-    pass
+class LoginAjaxView(View):
+    def post(self, request):
+        return {'success': True}
 
 
 class MyLoginView(LoginView):
