@@ -8,13 +8,28 @@ from django.contrib.auth.tokens import default_token_generator as \
     token_generator
 from users.forms import UserCreationForm, AuthenticationForm
 from users.utils import send_email_for_verify
+from django.http import JsonResponse
 
 User = get_user_model()
 
 
 class LoginAjaxView(View):
+
     def post(self, request):
-        return {'success': True}
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+
+        if email and password:
+            user = authenticate(email=email, password=password)
+            if user:
+                login(request, user)
+                return JsonResponse(data={}, status=201)
+            return JsonResponse(
+                data={'error': 'Пароль и логин не верные, попробуйте снова'},
+                status=400)
+        return JsonResponse(
+            data={'error': 'Введите логин и пароль'},
+            status=400)
 
 
 class MyLoginView(LoginView):
